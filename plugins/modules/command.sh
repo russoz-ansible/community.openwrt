@@ -5,7 +5,6 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 init() {
-    SUPPORTS_CHECK_MODE=""  # effectively False
     PARAMS="
         cmd=raw_params=_raw_params/str/r
         uses_shell=_uses_shell/bool//false
@@ -29,6 +28,7 @@ init() {
 }
 
 validate() {
+    no_check_mode
     [ -n "$executable" ] || executable="/bin/sh"
 }
 
