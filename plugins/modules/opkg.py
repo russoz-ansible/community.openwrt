@@ -65,6 +65,15 @@ options:
     description:
       - Do not follow dependencies.
     type: bool
+  conf_file:
+    description:
+      - Path to a custom opkg configuration file, passed to opkg as C(--conf).
+      - This replaces the default opkg configuration entirely instead of adding to it, so the file must define
+        its own C(dest) and C(lists_dir) entries in addition to any C(src) feed lines it needs.
+      - Useful on devices where the default opkg configuration does not provide the desired feeds (for example,
+        Teltonika firmware).
+    type: str
+    version_added: 1.7.0
 """
 
 EXAMPLES = r"""
@@ -94,6 +103,12 @@ EXAMPLES = r"""
     name: busybox
     state: present
     force: reinstall
+
+- name: Install a package using a custom opkg configuration file
+  community.openwrt.opkg:
+    name: python3-base
+    state: present
+    conf_file: /etc/opkg/openwrt.conf
 """
 
 RETURN = r""""""
